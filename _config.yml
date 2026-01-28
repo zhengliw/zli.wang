@@ -1,0 +1,25 @@
+title: "zli.wang"
+description: "Create, share, advance together."
+baseurl: ""
+url: "https://zli.wang"
+github_username: "zhengliw"
+
+author: "Zhengli Wang"
+email: "zhengliw@zli.wang"
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
