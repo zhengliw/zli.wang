@@ -4,13 +4,23 @@ baseurl: ""
 url: "https://zli.wang"
 github_username: "zhengliw"
 
-author: "Zhengli Wang"
-email: "zhengliw@zli.wang"
+author:
+  name: "Zhengli Wang"
+  email: "zhengliw@zli.wang"
+
+minima:
+  social_links:
+    - title: GitHub
+      icon: github
+      url: "https://github.com/zhengliw/"
 
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-paginate
   - jekyll-seo-tag
+
+paginate: 10
 
 # exclude:
 #   - .sass-cache/
