@@ -23,17 +23,13 @@ Since two weeks, we switched to Telekom fiber, because I was convinced that Tele
 
 Setting things up was the first headache - with Vodafone, I could operate their official router box in a special modem mode, so I could hook up my Mikrotik, which can pull address configuration over DHCP/v6 and communicate right away. Telekom offers two options: Use their Speedport router for a monthly or one-time fee, or bring your own device and only buy their modem. To use my Mikrotik, I decided for the latter, which requires the connecting router to use PPPoE - still very much so in 2025 (why?!). I wasn't too familiar with this protocol, but figured out what I needed to configure with [this guide](https://gist.github.com/madduci/8b8637b922e433d617261373220be44c). Afterwards, everything seemed to be up and running, so I called it a day and hopped on for some Counter Strike. No more lag spikes this time. Fiber for the win! 😉
 
-<figure>
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/11/IMG_20251104_221845-768x1024.jpg)
 
-<figcaption>
+![](/assets/images/IMG_20251104_221845-scaled.jpg)
 
-Not particularly fond of the cable management here...
+_Not particularly fond of the cable management here..._
 
-</figcaption>
 
-</figure>
 
 But as with every piece of technology, there are always some problems that you only notice after operating it for some time. For me, I first noticed issues when accessing certain Microsoft sites. They were extremely slow and when I checked the requests the pages were making, some of the CDN domains, from which the pages load JavaScript assets, were consistently timing out, such as wcpstatic.microsoft.com. I switched DNS servers on the Mikrotik to Cloudflare's DoH service, since that was what would've (sometimes) fixed things in the past. This time, however, nothing seemed to change.
 
@@ -43,7 +39,7 @@ The **MTU** dictates how many bytes (or octets, if you happen to write RFCs) the
 
 Let's consider this example:
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/10/图片.png)
+![](/assets/images/图片.png)
 
 For some internal networks between servers, higher MTUs are used to reduce overhead. That creates a MTU "boundary" for routers between high-MTU networks and low-MTU networks. Our example router has MTU 1500 on interface A and MTU 9000 on interface B.
 
@@ -53,25 +49,21 @@ Since the MTU on network B is bigger than the MTU of network A, packets can be r
 
 3. Drop the packet on the floor
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/10/图片-5.png)
+![](/assets/images/图片-5.png)
 
 The router decides what to do based on the "**Don't fragment**" (or DF) bit in the IP packet. If it is not set, the router may perform option 1, formally called **fragmentation**. Fragmentation, however, was too costly for the little benefits it brought, so it is not a common practice anymore - many routers today wouldn't even accept or forward fragmented packets.
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/10/图片-6.png)
+![](/assets/images/图片-6.png)
 
 Nowadays, most packets (practically everything from HTTP to whatever) are sent with the DF bit set. If the packet happens to cross a lower MTU boundary, the router drops the package and informs the sender about which MTU it should use for this particular route path instead. This is done via **ICMP** (Internet Control Management Protocol), which is also, but not only used for diagnostics tools like ping. **PMTUD** (Path MTU discovery) is done with this principle: The host starts sending packets with its MTU, and if any router on the way complains, it reduces the packet size to the value that particular router suggests. It repeats this process until all routers in the chain are satisfied. The largest packet size that can be sent on a specific route is called the **PMTU** (path MTU). TCP has PMTUD built into it, and protocols using UDP have to implement this themselves.
 
-<figure>
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/11/Screenshot-2025-11-04-at-17.46.07.jpg)
 
-<figcaption>
+![](/assets/images/Screenshot-2025-11-04-at-17.46.07.jpg)
 
-No senders were harmed in this illustration
+_No senders were harmed in this illustration_
 
-</figcaption>
 
-</figure>
 
 Just a side note: Option 1 is only relevant for IPv4 (although fragmentation itself close to being deprecated anyways), as IPv6 ditches fragmentation on the router completely (Don't fragment is implied in all packets). Hosts are expected to detect the path MTU themselves and adjust their packet size accordingly.
 
@@ -85,7 +77,7 @@ If you're familiar with TCP, you might know that TCP packets sometimes have opti
 
 In the SYN packets during the three-way handshake, the peers use the relevant TCP option to inform their other peer about its MSS. The other side should only send payloads that are not larger than the MSS.
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/11/Screenshot-2025-11-04-at-17.32.30.jpg)
+![](/assets/images/Screenshot-2025-11-04-at-17.32.30.jpg)
 
 Now you might see where this is going, so back to the problem in my network. My LAN network uses MTU 1500, the sane default for all network interfaces ever. But PPPoE, which Telekom requires, adds an **8-byte overhead** to every packet sent. That means that any communication between my LAN and the internet can only use an effective MTU of 1492 (1500, which is the MTU of the underlying Ethernet link, minus 8).
 
@@ -93,17 +85,17 @@ Another side note 🙃: Some ISPs compensate for that by using jumbo frames ([RF
 
 For sending stuff from LAN to WAN, this is not a problem, as the devices on the LAN perform PMTUD and my Mikrotik router will tell them to reduce their packet size to 1492. The MSS that those devices send, however, are still calculated using the MTU 1500, which is set on the interface. Essentially, they're telling their other peer (e.g. a website, or the Microsoft CDNs that were timing out) to **send bigger packets than they're actually capable of receiving**.
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/11/Screenshot-2025-11-04-at-18.16.43.jpg)
+![](/assets/images/Screenshot-2025-11-04-at-18.16.43.jpg)
 
 In _healthy_ network setups, this is, surprisingly, not a problem: When the Microsoft CDN eventually communicates back to me, the too big packet will get dropped by Telekom's edge router. That router will now send back an ICMP message telling the Microsoft CDN to reduce its packet size to 1492, and the Microsoft CDN _should_ resend a packet with this MTU.
 
 But see that firewall in-between? Exactly. Some administrator (probably on Microsoft's side, wild guess 🙃) thought it was a good idea to recklessly block all ICMP traffic. This causes a so-called **PMTU blackhole**.
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/11/Screenshot-2025-11-04-at-18.18.29.jpg)
+![](/assets/images/Screenshot-2025-11-04-at-18.18.29.jpg)
 
 As a workaround, people have come up with a technique called **MSS clamping**. You configure a router in the chain to "hijack" the TCP handshake and change the MSS field to match the lowest known MTU. For our particular environment, this means that when a device on my LAN sends a SYN packet containing MSS 1460, the router changes the MSS 1452 before forwarding the packet to the PPPoE interface, because it knows that the PPPoE interface has a MTU of 1492.
 
-![](https://crunchystudio.cc/wp-content/uploads/2025/11/Screenshot-2025-11-04-at-18.30.39.jpg)
+![](/assets/images/Screenshot-2025-11-04-at-18.30.39.jpg)
 
 Since MSS is a TCP concept, it will not work for UDP streams. But since UDP is about low latency (e.g. for online gaming, VoIP...), we can expect that the packets aren't as big anyways and therefore below the MTU. Or the services using UDP implement PMTUD and don't blindly block ICMP. 🙃
 

@@ -20,16 +20,12 @@ But those are all just excuses. I've always been dreaming of something big, and 
 
 I hope it didn't sound overly dramatic... did it? Anyways, that was the somewhat emotional part. But hold on, before you leave, I have to tell you to check out the third Sonic movie, in theaters right now. Not going to give any spoilers, all that I can say is that... "Maria!" _(Shadow noises)_ 🦔 On a side note, did he ever smile, even once? Kind of sad to think about it. 🙁
 
-<figure>
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/12/GdPY4owXcAEoyhJ-1024x588.jpg)
 
-<figcaption>
+![](/assets/images/GdPY4owXcAEoyhJ.jpg)
 
-[https://x.com/DiscussingFilm/status/1861069543143030850](https://x.com/DiscussingFilm/status/1861069543143030850)
+_[https://x.com/DiscussingFilm/status/1861069543143030850](https://x.com/DiscussingFilm/status/1861069543143030850)_
 
-</figcaption>
 
-</figure>
 
 Alright, that's all I've got for you today. I still got quite a few topics to write about in the next year, so don't worry - it won't get boring. Happy new year, and I guess we'll see each other in 2025!

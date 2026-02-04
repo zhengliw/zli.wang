@@ -23,17 +23,13 @@ Welcome back! Hope you enjoyed the [last post](https://crunchystudio.cc/2024/07/
 
 Remember how I [set up Ubuntu Server](https://crunchystudio.cc/2024/07/01/small-but-cute-n5105-home-server/) to run all my services? Yup, and Ubuntu Server was actually pretty amazing - everything just worked, nothing ever broke. And at that point, I was happily rocking the ISP router for networking... Yeah, I know, I've complained about it so many times in the previous posts, but it worked for the daily internet usage, and offered just enough functionality for me to tinker around.
 
-<figure>
 
-![The ISP router, currently placed under the TV](https://crunchystudio.cc/wp-content/uploads/2024/07/1720361982301-1024x768.jpg)
 
-<figcaption>
+![The ISP router, currently placed under the TV](/assets/images/1720361982301-scaled.jpg)
 
-Face reveal: ISP router under the TV
+_Face reveal: ISP router under the TV_
 
-</figcaption>
 
-</figure>
 
 Port-forwarding was basically all I needed (and all the router had), and the ISP router even excelled at one thing. That is, reconnecting - maybe once in one or two months, the ISP upstream would randomly go down for half an hour. You might remember [this post](https://crunchystudio.cc/2024/06/23/fixing-wifi-the-beginning-of-a-self-host-journey/), where I eventually had to switch back main routing functionalities to the ISP router and use my Xiaomi AX3000T routers for WiFi only. And there was only one single reason for this - the Xiaomi router, when used as the "main router", wouldn't re-fetch its configuration from upstream after an outage. That meant I had to switch WAN configuration on the Mi router to static, and then back to DHCP to force a re-fetch. And to do that, I had to be on my home network, so if I were unlucky and an outage happens while I'm away, all my port-forwarded services would become inaccessible and I'd have literally no way to fix it... 😔 (a very sad CrunchyCrunch)
 
@@ -49,17 +45,13 @@ And then I remembered... Maybe you do too!
 
 [OpenWrt](https://openwrt.org/)!
 
-<figure>
 
-![Screenshot of the OpenWrt website](https://crunchystudio.cc/wp-content/uploads/2024/07/image-17-1024x715.png)
 
-<figcaption>
+![Screenshot of the OpenWrt website](/assets/images/image-17.png)
 
-Screenshot from [https://openwrt.org](https://openwrt.org)
+_Screenshot from [https://openwrt.org](https://openwrt.org)_
 
-</figcaption>
 
-</figure>
 
 Taken from the official description...
 
@@ -75,27 +67,23 @@ For me, I could just follow the official documentation and get OpenWrt installed
 
 After I did that, I took out the system SSD out of the server where Ubuntu Server was still installed, and flashed it with OpenWrt's image according to the official guide, with Fedora 40 KDE Spin (why did I mention its full name though). After reinstalling the SSD and making sure the interfaces were properly configured, I switched the ISP router to bridge/modem mode once again and plugged all devices I had into the server, now loaded with OpenWrt. Actually, compare it with pictures from [this post](https://crunchystudio.cc/2024/07/01/small-but-cute-n5105-home-server/)! It now has more flashing lights and definitely looks cooler.
 
-![Photo of the back panel of the home server with some ethernet cables attached](https://crunchystudio.cc/wp-content/uploads/2024/07/1720364548737-1024x768.jpg)
+![Photo of the back panel of the home server with some ethernet cables attached](/assets/images/1720364548737-scaled.jpg)
 
-![Photo of the front panel of the home server](https://crunchystudio.cc/wp-content/uploads/2024/07/1720364548728-1024x768.jpg)
+![Photo of the front panel of the home server](/assets/images/1720364548728-scaled.jpg)
 
-<figure>
 
-![Top view of the home server, next to one of the Xiaomi routers/AP](https://crunchystudio.cc/wp-content/uploads/2024/07/1720455353467-1024x768.jpg)
 
-<figcaption>
+![Top view of the home server, next to one of the Xiaomi routers/AP](/assets/images/1720455353467-scaled.jpg)
 
-Pro-tier cable management... /j
+_Pro-tier cable management... /j_
 
-</figcaption>
 
-</figure>
 
 Now, since OpenWrt is a fully-featured router OS, it of course comes with a WebUI for management. It's referred to as LuCI, and looks like this:
 
-![LuCI screenshot, status dashboard](https://crunchystudio.cc/wp-content/uploads/2024/07/image-18-1024x715.png)
+![LuCI screenshot, status dashboard](/assets/images/image-18.png)
 
-![LuCI screenshot, firewall configuration](https://crunchystudio.cc/wp-content/uploads/2024/07/image-19-1024x715.png)
+![LuCI screenshot, firewall configuration](/assets/images/image-19.png)
 
 There are also the `uci` command-line tool and some OpenWrt-specific configuration files which sort of wrap around other Linux networking components. Those are accessible over a shell e.g. SSH, but the WebUI exposes most advanced configuration options already - in fact, there are even "extensions" for LuCI you can install to control stuff like Docker right from the WebUI! Now I finally know what I was looking for when learning networking... Speaking of which, check out [NetworkChuck](https://www.youtube.com/@NetworkChuck) on YouTube. I learned a lot about networking from this channel, and I don't [suck at subnetting](https://www.youtube.com/playlist?list=PLIhvC56v63IKrRHh3gvZZBAGvsvOhwrRF) anymore!
 
@@ -107,17 +95,13 @@ Nope, stop, that's wrong.
 
 You see, OpenWrt uses the Linux kernel - and there's absolutely no doubt in it. But it doesn't use GNU for most parts - it uses [Busybox](https://www.busybox.net/) instead. This is also the aspect that sets it wide apart from the rest of the Linux world. Busybox targets small and embedded devices, which is evident from [its size alone](https://www.reddit.com/r/linuxquestions/comments/g7qs8o/comment/fokrsl6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button). It aims to implement the most used UNIX commands with their respective most-used parameters, so a lot of advanced functionalities are missing. But the fact that everything is inside a [single executable](https://www.busybox.net/about.html) is... pretty impressive! No wonder why OpenWrt went with Busybox.
 
-<figure>
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/07/image-21.png)
 
-<figcaption>
+![](/assets/images/image-21.png)
 
-OpenWrt SSH prompt
+_OpenWrt SSH prompt_
 
-</figcaption>
 
-</figure>
 
 This minimalistic packaging decision goes for all software distributed in OpenWrt, and that took me a while to realize... OpenWrt doesn't include things you won't need on a router, neither pre-installed, pre-configured, nor in its repositories for its opkg package manager. There's basically no way to spin up a GUI with one command, or setup any sort of hardware acceleration - even with open source drivers like the ones for Intel GPUs and AMD GPUs... At least without completely disfiguring the system. 🙃 The kernel was also compiled with some kernel parameters disabled, and it caused some problems for me that I could luckily work around - more on that in a second.
 
@@ -127,15 +111,15 @@ Right after installing Docker and spinning up my first service - WordPress, I be
 
 I created a new zone called `aldock` (allow Docker, yeah... the name), and it covers the subnet 172.0.0.0/8, from which subnet Docker bridge networks allocate smaller subnets like 172.18.0.0/16 by default. And afterwards, I just allowed it the zone to forward from and to the WAN zone, and set all chains to accept. Not sure if security could be done better, but since those addresses shouldn't be addressable from outside, I'm just going to assume I'm safe...
 
-![Firewall settings for aldock: Allow forward from and to WAN](https://crunchystudio.cc/wp-content/uploads/2024/07/image-23.png)
+![Firewall settings for aldock: Allow forward from and to WAN](/assets/images/image-23.png)
 
-![Firewall settings for aldock: Covered subnets set to 172.0.0.0/8](https://crunchystudio.cc/wp-content/uploads/2024/07/image-24.png)
+![Firewall settings for aldock: Covered subnets set to 172.0.0.0/8](/assets/images/image-24.png)
 
 But that was just allowing traffic between the containers and the WAN so the containers have "internet access". Now we need to somehow make inbound access to the containers possible, so we can access whatever service is running in there. This was a smaller problem for me, since I reverse proxy everything with an nginx instance (post on its way) running with host network mode. That way, nginx can access all bridge networks and can listen on all host interfaces directly without port-forwarding and all that mess. To avoid conflicts with the default HTTP/S ports, I just moved the LuCI interface of the router to another port.
 
 All I had to do additionally was to allow port 80 and 443, via traffic rules:
 
-![Two custom rules to allow port 80 and 443 on WAN zone](https://crunchystudio.cc/wp-content/uploads/2024/07/image-25.png)
+![Two custom rules to allow port 80 and 443 on WAN zone](/assets/images/image-25.png)
 
 The LAN zone was already set to accept on all chains, so listening on LAN addresses was no problem.
 

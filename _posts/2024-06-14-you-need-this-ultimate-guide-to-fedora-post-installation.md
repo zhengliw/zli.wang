@@ -177,7 +177,7 @@ The easiest way to get the full set of Windows Fonts is by copying them over fro
 
 If you want to add or remove startup applications, get GNOME Tweaks from the RPM repositories.
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/06/image-1-1024x714.png)
+![](https://crunchystudio.cc/wp-content/uploads/2024/06/image-1.png)
 
 ## CJK Font Preference
 
@@ -211,7 +211,7 @@ flatpak install org.freedesktop.Platform.VulkanLayer.MangoHud
 
 For configuration files in `~/.config/MangoHud/` to take effect, you need to add a filesystem override for at least the Steam Flatpak. I prefer to do this for all Flatpaks with read-only permissions, with the help of the tool [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal).
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/06/Screenshot-from-2024-06-14-19-35-27-edited-1-1024x795.png)
+![](https://crunchystudio.cc/wp-content/uploads/2024/06/Screenshot-from-2024-06-14-19-35-27-edited-1.png)
 
 ## Final Words
 

@@ -16,7 +16,7 @@ You've probably heard of [OpenWrt](https://openwrt.org/): Instead of using your 
 
 \[Update 6th July, 2024\] Reading through this post again today, I noticed I never mentioned on what platform this server runs... It's a Celeron N5105, so it's an x86\_64 device. 😛
 
-![A front panel and back panel showcase of the Beikong N5105 software router](https://crunchystudio.cc/wp-content/uploads/2024/06/4daf8070f801faf1748e5113073b982a.jpg)
+![A front panel and back panel showcase of the Beikong N5105 software router](/assets/images/4daf8070f801faf1748e5113073b982a.jpg)
 
 I bought the variant without RAM and storage since buying them separately was a bit cheaper and I had a M.2 SSD lying around. I was pretty impressed when I first got it, and I knew it was a perfect opportunity to see how an "actual" server feels like. It has a lot of ports, including an HDMI/DP and a serial port in case I screw up my network configuration, couple of USB ports, a M.2 NVMe and a SATA connection on its inside. It's probably more upgradable than any lightweight laptop out there today, with its two SO-DIMM RAM slots instead of soldered RAM... Also, I heard some manufacturers started soldering storage as well? ¯\\\_(ツ)\_/¯
 
@@ -28,11 +28,11 @@ The installation went quick and I could get the system running pretty easily. I 
 
 Running for about five months already, here's how it looks right now since I couldn't find an earlier photo on my phone...
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/06/1719329742394-1024x768.jpg)
+![](/assets/images/1719329742394-scaled.jpg)
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/06/1719329742368-1024x768.jpg)
+![](/assets/images/1719329742368-scaled.jpg)
 
-![](https://crunchystudio.cc/wp-content/uploads/2024/06/1719329742411-1024x768.jpg)
+![](/assets/images/1719329742411-scaled.jpg)
 
 Doesn't it look amazing! :P The lights also feel weirdly calming to watch, maybe that's something to do when I get bored...
 
