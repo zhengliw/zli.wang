@@ -3,8 +3,6 @@ layout: post
 title: "Small, but cute - N5105 Home Server"
 author: Zhengli Wang
 date: 2024-07-01
-categories: 
-  - "home-server"
 coverImage: "1719329742411-scaled.jpg"
 ---
 

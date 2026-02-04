@@ -3,8 +3,6 @@ layout: post
 title: "Fixing WiFi - The Beginning of a Self-Host Journey"
 author: Zhengli Wang
 date: 2024-06-23
-categories: 
-  - "home-server"
 tags: 
   - "home"
   - "linux"

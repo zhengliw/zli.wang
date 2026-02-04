@@ -3,8 +3,6 @@ layout: post
 title: "Automating The Dream - This Is The Way To Smart Home"
 author: Zhengli Wang
 date: 2024-07-05
-categories: 
-  - "home-server"
 tags: 
   - "bluetooth"
   - "home"

@@ -3,8 +3,6 @@ layout: post
 title: "Sanitizing My Home Network - AdGuard Home"
 author: Zhengli Wang
 date: 2024-07-06
-categories: 
-  - "home-server"
 tags: 
   - "adguard"
   - "cloudflare"

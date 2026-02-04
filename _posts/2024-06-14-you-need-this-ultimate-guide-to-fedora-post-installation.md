@@ -3,8 +3,6 @@ layout: post
 title: "You need this - Ultimate Guide to Fedora Post-Installation"
 author: Zhengli Wang
 date: 2024-06-14
-categories: 
-  - "guides"
 tags: 
   - "fedora"
   - "guide"

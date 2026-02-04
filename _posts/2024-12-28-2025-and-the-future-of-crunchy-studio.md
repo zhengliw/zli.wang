@@ -3,8 +3,6 @@ layout: post
 title: "2025 - And The Future Of Crunchy Studio"
 author: Zhengli Wang
 date: 2024-12-28
-categories: 
-  - "meta"
 tags: 
   - "sonic"
 coverImage: "IMG_20241228_214747-scaled.jpg"

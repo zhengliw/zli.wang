@@ -3,8 +3,6 @@ layout: post
 title: "This Penguin Knows The Routes - OpenWrt Experience"
 author: Zhengli Wang
 date: 2024-07-08
-categories: 
-  - "home-server"
 tags: 
   - "docker"
   - "firewall"

@@ -3,8 +3,6 @@ layout: post
 title: "PPPoE - Why, just why?!"
 author: Zhengli Wang
 date: 2025-11-04
-categories: 
-  - "story"
 tags: 
   - "mikrotik"
   - "networking"

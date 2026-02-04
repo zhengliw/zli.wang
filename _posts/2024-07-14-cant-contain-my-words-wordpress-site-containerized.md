@@ -3,8 +3,6 @@ layout: post
 title: "Can't \"Contain\" My Words - WordPress Site, Containerized"
 author: Zhengli Wang
 date: 2024-07-14
-categories: 
-  - "home-server"
 tags: 
   - "docker"
   - "linux"

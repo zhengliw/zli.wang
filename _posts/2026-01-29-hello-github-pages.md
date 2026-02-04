@@ -3,8 +3,6 @@ layout: post
 title: "Hello, GitHub Pages!"
 author: Zhengli Wang
 date: 2026-01-29
-categories: 
-  - "meta"
 ---
 
 Quick update: Yes, we are moving to GitHub Pages with the acquisition of the new
