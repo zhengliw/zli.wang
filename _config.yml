@@ -6,13 +6,21 @@ github_username: "zhengliw"
 
 author:
   name: "Zhengli Wang"
-  email: "zhengliw(at)zli.wang"
+  email: "zhengliw@zli.wang"
+
+disqus:
+  shortname: zli-wang
 
 minima:
+  skin: auto
+  show_excerpts: true
   social_links:
     - title: GitHub
       icon: github
       url: "https://github.com/zhengliw/"
+    - title: Instagram
+      icon: instagram
+      url: "https://www.instagram.com/crunchycrunch_wtmn/"
 
 theme: minima
 plugins:
