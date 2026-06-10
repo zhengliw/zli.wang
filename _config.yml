@@ -21,6 +21,9 @@ minima:
     - title: Instagram
       icon: instagram
       url: "https://www.instagram.com/crunchycrunch_wtmn/"
+    - title: X
+      icon: x-twitter
+      url: "https://x.com/_crcrunch"
 
 theme: minima
 plugins:
